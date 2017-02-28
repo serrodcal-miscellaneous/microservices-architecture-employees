@@ -1,0 +1,24 @@
+group 'org.microservices.architecture'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'scala'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'org.scala-lang:scala-library:2.10.1'
+}
+
+tasks.withType(ScalaCompile) {
+    ScalaCompileOptions.metaClass.daemonServer = true
+    ScalaCompileOptions.metaClass.fork = true
+    ScalaCompileOptions.metaClass.useAnt = false
+    ScalaCompileOptions.metaClass.useCompileDaemon = false
+}
+
+dependencies {
+    compile group: 'com.typesafe.akka', name: 'akka-actor_2.10', version: '2.1.4'
+    compile group: 'org.scala-lang', name: 'scala-library', version: '2.10.1'
+}
