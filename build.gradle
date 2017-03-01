@@ -19,6 +19,11 @@ tasks.withType(ScalaCompile) {
 }
 
 dependencies {
-    compile group: 'com.typesafe.akka', name: 'akka-actor_2.10', version: '2.1.4'
-    compile group: 'org.scala-lang', name: 'scala-library', version: '2.10.1'
+    compile group: 'com.typesafe.akka', name: 'akka-actor_2.11', version: '2.4.17'
+    compile group: 'org.scala-lang', name: 'scala-library', version: '2.12.1'
+    testCompile 'org.scalatest:scalatest_2.11:3.0.1'
+    testCompile 'junit:junit:4.12'
 }
+
+sourceSets.main.scala.srcDir 'src/scala'
+sourceSets.test.scala.srcDir 'test/scala'
