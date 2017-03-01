@@ -1,0 +1,25 @@
+group 'org.microservices.architecture'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'scala'
+
+repositories {
+    mavenCentral()
+}
+
+tasks.withType(ScalaCompile) {
+    ScalaCompileOptions.metaClass.daemonServer = true
+    ScalaCompileOptions.metaClass.fork = true
+    ScalaCompileOptions.metaClass.useAnt = false
+    ScalaCompileOptions.metaClass.useCompileDaemon = false
+}
+
+dependencies {
+    compile 'com.typesafe.akka:akka-actor_2.12:2.4.17'
+    compile 'org.scala-lang:scala-library:2.12.1'
+    testCompile 'org.scalatest:scalatest_2.12:3.0.1'
+    testCompile 'junit:junit:4.12'
+}
+
+sourceSets.main.scala.srcDir 'main/scala'
+sourceSets.test.scala.srcDir 'test/scala'
