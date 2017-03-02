@@ -15,8 +15,11 @@ tasks.withType(ScalaCompile) {
 }
 
 dependencies {
-    compile 'com.typesafe.akka:akka-actor_2.12:2.4.17'
     compile 'org.scala-lang:scala-library:2.12.1'
+    compile 'com.typesafe.akka:akka-actor_2.12:2.4.17'
+    compile 'com.typesafe.akka:akka-stream_2.12:2.4.17'
+    compile 'com.typesafe.akka:akka-http_2.12:10.0.4'
+    compile 'com.typesafe.akka:akka-http-spray-json_2.12:10.0.4'
     testCompile 'org.scalatest:scalatest_2.12:3.0.1'
     testCompile 'junit:junit:4.12'
 }
