@@ -25,7 +25,8 @@ object HttpServer extends App {
 
     val route : Route = post {
         path("echo") {
-          complete((StatusCodes.Accepted, "Recived"))
+          val json = "{\"hola\":\"quetal\"}" //TODO: Undo mock
+          complete((StatusCodes.OK, json))
         }
       }
 
