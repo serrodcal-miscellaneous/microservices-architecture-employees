@@ -6,14 +6,16 @@ import akka.http.scaladsl.Http
 import akka.http.scaladsl.model._
 import akka.http.scaladsl.server.Directives._
 import akka.http.scaladsl.server.Route
+import model.Employee
 
 import scala.io.StdIn
+
 //import com.typesafe.config._
 
 /**
   * Created by serrodcal on 1/3/17.
   */
-object HttpServer extends App {
+object HttpServer extends App with JsonSupport {
 
   override def main(args: Array[String]): Unit = {
 
@@ -24,9 +26,12 @@ object HttpServer extends App {
     implicit val executionContext = system.dispatcher
 
     val route : Route = post {
-        path("echo") {
-          val json = "{\"hola\":\"quetal\"}" //TODO: Undo mock
-          complete((StatusCodes.OK, json))
+        path("employee" / "echo") {
+          entity(as[Employee]) { employee =>
+            val idItem = employee.id
+            val nameItem = employee.name
+            complete((StatusCodes.OK, s"Employee {$idItem} is $nameItem."))
+          }
         }
       }
 
