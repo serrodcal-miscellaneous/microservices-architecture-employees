@@ -1,4 +1,4 @@
-package appServer
+package server
 
 import akka.http.scaladsl.marshallers.sprayjson.SprayJsonSupport
 import model.Employee
