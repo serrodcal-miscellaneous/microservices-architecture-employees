@@ -1,6 +1,7 @@
 package server
 
 import akka.actor.ActorSystem
+import akka.event.Logging
 import akka.http.scaladsl.Http
 import akka.http.scaladsl.model._
 import akka.http.scaladsl.server.Directives._
@@ -26,6 +27,8 @@ object HttpServer extends App with JsonSupport {
 
     // needed for the future flatMap/onComplete in the end
     implicit val executionContext = system.dispatcher
+
+    val logger = Logging(system, getClass)
 
     val route : Route = post {
         path(config.getString("application.context") / config.getString("application.resource")) {
