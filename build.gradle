@@ -26,5 +26,5 @@ dependencies {
     testCompile 'junit:junit:4.12'
 }
 
-sourceSets.main.scala.srcDir 'main/scala'
-sourceSets.test.scala.srcDir 'test/scala'
+sourceSets.main.scala.srcDir 'src/main/scala'
+sourceSets.test.scala.srcDir 'src/test/scala'
