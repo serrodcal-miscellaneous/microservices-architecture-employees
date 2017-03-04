@@ -20,6 +20,7 @@ dependencies {
     compile 'com.typesafe.akka:akka-stream_2.12:2.4.17'
     compile 'com.typesafe.akka:akka-http_2.12:10.0.4'
     compile 'com.typesafe.akka:akka-http-spray-json_2.12:10.0.4'
+    compile 'ch.qos.logback:logback-classic:1.1.11'
     compile 'com.typesafe.akka:akka-slf4j_2.12:2.4.17'
     testCompile 'org.scalatest:scalatest_2.12:3.0.1'
     testCompile 'junit:junit:4.12'
