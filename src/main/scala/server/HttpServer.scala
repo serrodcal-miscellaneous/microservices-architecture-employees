@@ -1,6 +1,7 @@
 package server
 
 import akka.actor.ActorSystem
+import akka.event.Logging
 import akka.http.scaladsl.Http
 import akka.http.scaladsl.model._
 import akka.http.scaladsl.server.Directives._
@@ -27,8 +28,11 @@ object HttpServer extends App with JsonSupport {
     // needed for the future flatMap/onComplete in the end
     implicit val executionContext = system.dispatcher
 
+    val logger = Logging(system, getClass)
+
     val route : Route = post {
         path(config.getString("application.context") / config.getString("application.resource")) {
+          logger.info("Message recived")
           entity(as[Employee]) { employee =>
             val idItem = employee.id
             val nameItem = employee.name
@@ -41,8 +45,9 @@ object HttpServer extends App with JsonSupport {
     val port = config.getInt("application.port")
     val bindingFuture = Http().bindAndHandle(route, host, port)
 
-    println(s"Server online at http://$host:$port/\nPress RETURN to stop...")
+    logger.info(s"Server online at http://$host:$port/\nPress RETURN to stop...")
     StdIn.readLine() // let it run until user presses return
+    logger.info(s"Server stopped :(")
     bindingFuture
       .flatMap(_.unbind()) // trigger unbinding from the port
       .onComplete(_ => system.terminate()) // and shutdown when done
