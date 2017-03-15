@@ -7,6 +7,10 @@ repositories {
     mavenCentral()
 }
 
+ext {
+    scalaVersion = "2.12"
+}
+
 tasks.withType(ScalaCompile) {
     ScalaCompileOptions.metaClass.daemonServer = true
     ScalaCompileOptions.metaClass.fork = true
@@ -15,17 +19,17 @@ tasks.withType(ScalaCompile) {
 }
 
 dependencies {
-    compile 'org.scala-lang:scala-library:2.12.1'
-    compile 'com.typesafe.akka:akka-actor_2.12:2.4.17'
-    compile 'com.typesafe.akka:akka-stream_2.12:2.4.17'
-    compile 'com.typesafe.akka:akka-http_2.12:10.0.4'
-    compile 'com.typesafe.akka:akka-http-spray-json_2.12:10.0.4'
+    compile 'org.scala-lang:scala-library:' + scalaVersion + '.1'
+    compile 'com.typesafe.akka:akka-actor_' + scalaVersion + ':2.4.17'
+    compile 'com.typesafe.akka:akka-stream_' + scalaVersion + ':2.4.17'
+    compile 'com.typesafe.akka:akka-http_' + scalaVersion + ':10.0.4'
+    compile 'com.typesafe.akka:akka-http-spray-json_' + scalaVersion + ':10.0.4'
     compile 'ch.qos.logback:logback-classic:1.1.11'
-    compile 'com.typesafe.akka:akka-slf4j_2.12:2.4.17'
-    compile 'com.typesafe.akka:akka-http-testkit_2.12:10.0.4'
+    compile 'com.typesafe.akka:akka-slf4j_' + scalaVersion + ':2.4.17'
+    compile 'com.typesafe.akka:akka-http-testkit_' + scalaVersion + ':10.0.4'
     testCompile 'junit:junit:4.12'
-    testCompile 'org.scalatest:scalatest_2.12:3.0.1'
-    testCompile 'com.typesafe.akka:akka-http-testkit_2.12:10.0.4'
+    testCompile 'org.scalatest:scalatest_' + scalaVersion + ':3.0.1'
+    testCompile 'com.typesafe.akka:akka-http-testkit_' + scalaVersion + ':10.0.4'
 }
 
 sourceSets.main.scala.srcDir 'src/main/scala'
