@@ -23,7 +23,7 @@ object HttpServer extends App {
     // needed for the future flatMap/onComplete in the end
     implicit val executionContext = system.dispatcher
 
-    val logger = Logging(system, getClass)
+    implicit val logger = Logging(system, getClass)
 
     val employeeRoutes = new EmployeeRoutes()
     val routes = employeeRoutes.route // ~ otherRoutes.route
