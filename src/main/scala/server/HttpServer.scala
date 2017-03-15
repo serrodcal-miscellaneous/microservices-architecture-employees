@@ -17,7 +17,7 @@ object HttpServer extends App {
 
     val config = ConfigFactory.load()
 
-    implicit val system = ActorSystem(config.getString("application.actor-system"))
+    implicit val system = ActorSystem(config.getString("server.actor-system"))
     implicit val materializer = ActorMaterializer()
 
     // needed for the future flatMap/onComplete in the end
@@ -28,8 +28,8 @@ object HttpServer extends App {
     val employeeRoutes = new EmployeeRoutes()
     val routes = employeeRoutes.route // ~ otherRoutes.route
 
-    val host = config.getString("application.host")
-    val port = config.getInt("application.port")
+    val host = config.getString("server.host")
+    val port = config.getInt("server.port")
     val bindingFuture = Http().bindAndHandle(routes, host, port)
 
     logger.info(s"Server online at http://$host:$port/\nPress RETURN to stop...")
