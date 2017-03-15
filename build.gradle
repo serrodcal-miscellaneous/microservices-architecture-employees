@@ -25,6 +25,7 @@ dependencies {
     compile 'com.typesafe.akka:akka-http-testkit_2.12:10.0.4'
     testCompile 'junit:junit:4.12'
     testCompile 'org.scalatest:scalatest_2.12:3.0.1'
+    testCompile 'com.typesafe.akka:akka-http-testkit_2.12:10.0.4'
 }
 
 sourceSets.main.scala.srcDir 'src/main/scala'
