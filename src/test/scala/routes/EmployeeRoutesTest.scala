@@ -1,8 +1,7 @@
 package routes
 
 import akka.event.Logging
-import akka.http.scaladsl.model.{ContentTypes, HttpEntity, HttpHeader, StatusCodes}
-import akka.http.scaladsl.server.ContentNegotiator.Alternative.{ContentType, MediaType}
+import akka.http.scaladsl.model.{ContentTypes, HttpEntity, StatusCodes}
 import akka.http.scaladsl.server.Route
 import akka.http.scaladsl.testkit.ScalatestRouteTest
 import org.scalatest.{Matchers, WordSpec}
