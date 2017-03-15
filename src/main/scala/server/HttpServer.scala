@@ -16,9 +16,7 @@ import scala.io.StdIn
 /**
   * Created by serrodcal on 1/3/17.
   */
-object HttpServer extends App with JsonSupport {
-
-  override def main(args: Array[String]): Unit = {
+object HttpServer extends App {
 
     val config = ConfigFactory.load()
 
@@ -51,7 +49,5 @@ object HttpServer extends App with JsonSupport {
     bindingFuture
       .flatMap(_.unbind()) // trigger unbinding from the port
       .onComplete(_ => system.terminate()) // and shutdown when done
-
-  }
 
 }
