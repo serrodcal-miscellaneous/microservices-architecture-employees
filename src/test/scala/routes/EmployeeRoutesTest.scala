@@ -24,7 +24,7 @@ class EmployeeRoutesTest extends WordSpec with Matchers with ScalatestRouteTest 
 
   "The service" should {
 
-    "return a Employee {1} is John message for POST request with {\"id\":1,\"name\":\"John\"}" in {
+    """return a Employee {1} is John. message for POST request with {"id":1,"name":"John"}""" in {
 
       echoPostRequest ~> Route.seal(employeeRoute) ~> check {
 
