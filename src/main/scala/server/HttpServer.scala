@@ -1,6 +1,7 @@
 package server
 
-import akka.actor.ActorSystem
+import actors.EmployeeEchoActor
+import akka.actor.{ActorRef, ActorSystem, Props}
 import akka.event.Logging
 import akka.http.scaladsl.Http
 import akka.stream.ActorMaterializer
@@ -15,28 +16,30 @@ import scala.io.StdIn
   */
 object HttpServer extends App {
 
-    val config = ConfigFactory.load()
+  val config = ConfigFactory.load()
 
-    implicit val system = ActorSystem(config.getString("server.actor-system"))
-    implicit val materializer = ActorMaterializer()
+  implicit val system = ActorSystem(config.getString("server.actor-system"))
+  implicit val materializer = ActorMaterializer()
 
-    // needed for the future flatMap/onComplete in the end
-    implicit val executionContext = system.dispatcher
+  // needed for the future flatMap/onComplete in the end
+  implicit val executionContext = system.dispatcher
 
-    implicit val logger = Logging(system, getClass)
+  implicit val logger = Logging(system, getClass)
 
-    val employeeRoutes = new EmployeeRoutes()
-    val routes = employeeRoutes.route // ~ otherRoutes.route
+  implicit val employeeEchoActor = system.actorOf(Props[EmployeeEchoActor], name = "employeeEchoActor")
 
-    val host = config.getString("server.host")
-    val port = config.getInt("server.port")
-    val bindingFuture = Http().bindAndHandle(routes, host, port)
+  val employeeRoutes = new EmployeeRoutes()
+  val routes = employeeRoutes.route // ~ otherRoutes.route
 
-    logger.info(s"Server online at http://$host:$port/\nPress RETURN to stop...")
-    StdIn.readLine() // let it run until user presses return
-    logger.info(s"Server stopped :(")
-    bindingFuture
-      .flatMap(_.unbind()) // trigger unbinding from the port
-      .onComplete(_ => system.terminate()) // and shutdown when done
+  val host = config.getString("server.host")
+  val port = config.getInt("server.port")
+  val bindingFuture = Http().bindAndHandle(routes, host, port)
+
+  logger.info(s"Server online at http://$host:$port/\nPress RETURN to stop...")
+  StdIn.readLine() // let it run until user presses return
+  logger.info(s"Server stopped :(")
+  bindingFuture
+    .flatMap(_.unbind()) // trigger unbinding from the port
+    .onComplete(_ => system.terminate()) // and shutdown when done
 
 }
