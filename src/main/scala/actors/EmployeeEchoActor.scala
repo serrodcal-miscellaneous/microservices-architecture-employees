@@ -14,7 +14,7 @@ class EmployeeEchoActor extends Actor {
       val nameItem = employee.name
       sender ! s"Employee {$idItem} is $nameItem."
     }
-    case _ => "Internal Error!"
+    case _ => sender ! "Internal Error!"
   }
 
 }
