@@ -1,7 +1,7 @@
 package server
 
+import actors.EmployeeRouterActor.Employee
 import akka.http.scaladsl.marshallers.sprayjson.SprayJsonSupport
-import model.Employee
 import spray.json._
 
 /**

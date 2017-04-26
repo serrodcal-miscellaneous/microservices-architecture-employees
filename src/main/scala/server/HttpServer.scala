@@ -1,6 +1,6 @@
 package server
 
-import actors.EmployeeEchoActor
+import actors.{EmployeeEchoActor, EmployeeRouterActor}
 import akka.actor.{ActorRef, ActorSystem, Props}
 import akka.event.Logging
 import akka.http.scaladsl.Http
@@ -26,7 +26,7 @@ object HttpServer extends App {
 
   implicit val logger = Logging(system, getClass)
 
-  implicit val employeeEchoActor = system.actorOf(Props[EmployeeEchoActor], name = "employeeEchoActor")
+  implicit val employeeRouterActor = system.actorOf(Props[EmployeeRouterActor], name = "employeeRouterActor")
 
   val employeeRoutes = new EmployeeRoutes()
   val routes = employeeRoutes.route // ~ otherRoutes.route

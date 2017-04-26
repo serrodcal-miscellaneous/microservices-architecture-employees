@@ -14,7 +14,7 @@ import server.HttpServer.getClass
 /**
   * Created by serrodcal on 15/3/17.
   */
-class EmployeeRoutesTest extends WordSpec with Matchers with ScalatestRouteTest {
+class EmployeeDeprecatedRoutesTest extends WordSpec with Matchers with ScalatestRouteTest {
 
   val config = ConfigFactory.load()
 
