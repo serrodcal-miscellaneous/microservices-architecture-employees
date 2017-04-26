@@ -1,6 +1,6 @@
 package routes
 
-import actors.EmployeeEchoActor
+import actors.{EmployeeEchoActor, EmployeeRouterActor}
 import akka.actor.{ActorSystem, Props}
 import akka.event.Logging
 import akka.http.scaladsl.model.{ContentTypes, HttpEntity, StatusCodes}
@@ -23,7 +23,7 @@ class EmployeeRoutesTest extends WordSpec with Matchers with ScalatestRouteTest 
 
   implicit val logger = Logging(system, getClass)
 
-  implicit val employeeEchoActor = system.actorOf(Props[EmployeeEchoActor], name = "employeeEchoActor")
+  implicit val employeeEchoActor = system.actorOf(Props[EmployeeRouterActor], name = "employeeRouterActor")
 
   val employeeRoutes = new EmployeeRoutes()
 

@@ -1,21 +1,23 @@
 package routes
 
+import actors.EmployeeRouterActor.Employee
 import akka.actor.ActorRef
+
 import scala.util.{Failure, Success}
 import akka.util.Timeout
+
 import scala.concurrent.duration._
 import akka.event.LoggingAdapter
 import akka.http.scaladsl.model._
 import akka.http.scaladsl.server.Directives._
 import akka.http.scaladsl.server.Route
-import model.Employee
 import server.JsonSupport
 import akka.pattern.ask
 
 /**
   * Created by serrodcal on 15/3/17.
   */
-class EmployeeRoutes (implicit logger: LoggingAdapter, implicit val employeeEchoActor: ActorRef) extends JsonSupport {
+class EmployeeRoutes (implicit logger: LoggingAdapter, implicit val employeeRouterActor: ActorRef) extends JsonSupport {
 
   implicit val timeout = Timeout(1 seconds)
 
@@ -23,7 +25,7 @@ class EmployeeRoutes (implicit logger: LoggingAdapter, implicit val employeeEcho
     path("employee" / "echo") {
       logger.info("Message recived")
       entity(as[Employee]) { employee =>
-        onComplete((employeeEchoActor ? employee).mapTo[String]) {
+        onComplete((employeeRouterActor ? employee).mapTo[String]) {
           case Success(message: String) => {
             logger.info("Echo!")
             complete(StatusCodes.OK, message)
