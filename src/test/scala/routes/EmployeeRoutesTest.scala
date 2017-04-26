@@ -1,6 +1,6 @@
 package routes
 
-import actors.EmployeeEchoActor
+import actors.{EmployeeEchoActor, EmployeeRouterActor}
 import akka.actor.{ActorSystem, Props}
 import akka.event.Logging
 import akka.http.scaladsl.model.{ContentTypes, HttpEntity, StatusCodes}
@@ -14,7 +14,7 @@ import server.HttpServer.getClass
 /**
   * Created by serrodcal on 15/3/17.
   */
-class EmployeeDeprecatedRoutesTest extends WordSpec with Matchers with ScalatestRouteTest {
+class EmployeeRoutesTest extends WordSpec with Matchers with ScalatestRouteTest {
 
   val config = ConfigFactory.load()
 
@@ -23,7 +23,7 @@ class EmployeeDeprecatedRoutesTest extends WordSpec with Matchers with Scalatest
 
   implicit val logger = Logging(system, getClass)
 
-  implicit val employeeEchoActor = system.actorOf(Props[EmployeeEchoActor], name = "employeeEchoActor")
+  implicit val employeeEchoActor = system.actorOf(Props[EmployeeRouterActor], name = "employeeRouterActor")
 
   val employeeRoutes = new EmployeeRoutes()
 
