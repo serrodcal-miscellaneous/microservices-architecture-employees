@@ -9,6 +9,7 @@ repositories {
 
 ext {
     scalaVersion = "2.12"
+    akkaVersion = "2.5.2"
 }
 
 tasks.withType(ScalaCompile) {
@@ -20,12 +21,12 @@ tasks.withType(ScalaCompile) {
 
 dependencies {
     compile 'org.scala-lang:scala-library:' + scalaVersion + '.1'
-    compile 'com.typesafe.akka:akka-actor_' + scalaVersion + ':2.4.17'
-    compile 'com.typesafe.akka:akka-stream_' + scalaVersion + ':2.4.17'
+    compile 'com.typesafe.akka:akka-actor_' + scalaVersion + ':' + akkaVersion
+    compile 'com.typesafe.akka:akka-stream_' + scalaVersion + ':' + akkaVersion
     compile 'com.typesafe.akka:akka-http_' + scalaVersion + ':10.0.4'
     compile 'com.typesafe.akka:akka-http-spray-json_' + scalaVersion + ':10.0.4'
     compile 'ch.qos.logback:logback-classic:1.1.11'
-    compile 'com.typesafe.akka:akka-slf4j_' + scalaVersion + ':2.4.17'
+    compile 'com.typesafe.akka:akka-slf4j_' + scalaVersion + ':' + akkaVersion
     compile 'com.typesafe.akka:akka-http-testkit_' + scalaVersion + ':10.0.4'
     testCompile 'junit:junit:4.12'
     testCompile 'org.scalatest:scalatest_' + scalaVersion + ':3.0.1'
