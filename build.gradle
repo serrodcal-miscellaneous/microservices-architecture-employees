@@ -8,8 +8,8 @@ repositories {
 }
 
 ext {
-    scalaVersion = "2.12"
-    akkaVersion = "2.5.2"
+    scalaVersion = '2.12'
+    akkaVersion = '2.5.2'
 }
 
 tasks.withType(ScalaCompile) {
