@@ -1,0 +1,21 @@
+image: java:8
+
+stages:
+  - build
+  - test
+
+before_script:
+  - apt-get update -y
+  ## Install Gradle
+  - apt-get install gradle -y
+  - gradle -version
+
+build:
+  stage: build
+  script:
+    - gradle build
+
+test:
+  stage: test
+  script:
+    - gradle test
