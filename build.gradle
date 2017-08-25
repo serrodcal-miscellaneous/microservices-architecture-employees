@@ -13,13 +13,6 @@ ext {
     akkaHttVersion = '10.0.7'
 }
 
-tasks.withType(ScalaCompile) {
-    ScalaCompileOptions.metaClass.daemonServer = true
-    ScalaCompileOptions.metaClass.fork = true
-    ScalaCompileOptions.metaClass.useAnt = false
-    ScalaCompileOptions.metaClass.useCompileDaemon = false
-}
-
 dependencies {
     compile 'org.scala-lang:scala-library:' + scalaVersion + '.1'
     compile 'com.typesafe.akka:akka-actor_' + scalaVersion + ':' + akkaVersion

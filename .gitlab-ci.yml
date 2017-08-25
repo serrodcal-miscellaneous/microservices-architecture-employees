@@ -12,9 +12,9 @@ before_script:
 build:
   stage: build
   script:
-    - gradle build -x test
+    - gradle clean build -x test
 
 test:
   stage: test
   script:
-    - gradle test
+    - gradle clean test
