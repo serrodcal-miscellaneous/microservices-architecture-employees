@@ -6,7 +6,6 @@ stages:
 
 before_script:
   - apt-get update -y
-  ## Install Gradle
   - apt-get install gradle -y
   - gradle -version
 
