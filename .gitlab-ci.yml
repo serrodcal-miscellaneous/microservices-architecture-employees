@@ -1,4 +1,4 @@
-image: java:8
+image: gradle:4.0-jdk8
 
 stages:
   - build
@@ -6,7 +6,6 @@ stages:
 
 before_script:
   - apt-get update -y
-  - apt-get install gradle -y
   - gradle -version
 
 build:
